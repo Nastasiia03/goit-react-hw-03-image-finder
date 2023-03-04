@@ -1,21 +1,27 @@
 import { Component } from 'react'
 import { ImageGallery } from './ImageGallery/ImageGallery';
+import { Layout } from './Layout.styled';
 import { Searchbar } from "./Searchbar/Searchbar";
 
 export class App extends Component {
   state = {
-		textSearch: '',
+    images: [],
+    textSearch: '',
+    page: 1,
   }
   
-handleSubmit = (textSearch) => {
-		this.setState({ textSearch })
+handleSubmit = (textSearch, page) => {
+		this.setState({ textSearch, page })
   }
   
   render() {
-    return (<div>
-      <Searchbar onSearch={this.handleSubmit} />
-      <ImageGallery value={this.state.textSearch}/>
-    </div>
+    return (
+      <>
+        <Searchbar onSearch={this.handleSubmit} />
+        <Layout>
+        <ImageGallery value={this.state.textSearch} />
+        </Layout>
+      </>
     )
   };
 };

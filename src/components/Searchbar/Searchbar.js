@@ -1,14 +1,17 @@
 import { Component } from 'react'
-import { Form, Input } from "./Searchbar.styled";
+import { Form, Header, Input, SearchButton } from "./Searchbar.styled";
 import { AiOutlineSearch } from 'react-icons/ai';
 
 export class Searchbar extends Component {
-    state = {
-        value: "",
+  state = {
+      value: "",
+    page: 1,
+      images: []
 }
 
     handleChange = ({ target: { value } }) => {
-		this.setState({ value })
+      this.setState({ value })
+      
     }
     
     handleSubmit = (e) => {
@@ -16,16 +19,17 @@ export class Searchbar extends Component {
 		if (!this.state.value) {
 			return console.log('Error')
 		}
-		this.props.onSearch(this.state.value)
-		this.setState({ value: '' })
+		this.props.onSearch(this.state.value, this.state.page)
+      this.setState({ value: '', page: 1 })
+      
     }
     
     render() {
-      return  <header >
+      return  <Header >
         <Form onSubmit={this.handleSubmit}>
-            <button type="submit">
+            <SearchButton type="submit">
                 <AiOutlineSearch size='20' />
-            </button>
+            </SearchButton>
 
             <Input
                 type="text"
@@ -35,6 +39,6 @@ export class Searchbar extends Component {
 				onChange={this.handleChange}
             />
         </Form>
-    </header>
+    </Header >
     }
 }
