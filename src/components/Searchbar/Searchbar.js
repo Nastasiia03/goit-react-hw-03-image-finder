@@ -1,12 +1,11 @@
 import { Component } from 'react'
 import { Form, Header, Input, SearchButton } from "./Searchbar.styled";
 import { AiOutlineSearch } from 'react-icons/ai';
+import toast from 'react-hot-toast';
 
 export class Searchbar extends Component {
   state = {
       value: "",
-    page: 1,
-      images: []
 }
 
     handleChange = ({ target: { value } }) => {
@@ -17,12 +16,11 @@ export class Searchbar extends Component {
     handleSubmit = (e) => {
 		e.preventDefault()
 		if (!this.state.value) {
-			return console.log('Error')
+			return toast.error('Sorry, the search field is empty 😒')
 		}
-		this.props.onSearch(this.state.value, this.state.page)
-      this.setState({ value: '', page: 1 })
-      
-    }
+		this.props.onSearch(this.state.value)
+      this.setState({ value: ''})
+    }   
     
     render() {
       return  <Header >
@@ -30,7 +28,7 @@ export class Searchbar extends Component {
             <SearchButton type="submit">
                 <AiOutlineSearch size='20' />
             </SearchButton>
-
+            
             <Input
                 type="text"
                 autocomplete="off"

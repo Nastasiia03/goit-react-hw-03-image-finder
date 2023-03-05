@@ -5,8 +5,7 @@ export const Loader = () => {
     return <Spinner>
     <InfinitySpin
         width='200'
-        color="blue"
-          
+        color="blue"     
         />
         </Spinner>
 }
