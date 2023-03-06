@@ -2,6 +2,7 @@ import { Component } from 'react'
 import { Form, Header, Input, SearchButton } from "./Searchbar.styled";
 import { AiOutlineSearch } from 'react-icons/ai';
 import toast from 'react-hot-toast';
+import PropTypes from "prop-types";
 
 export class Searchbar extends Component {
   state = {
@@ -40,3 +41,7 @@ export class Searchbar extends Component {
     </Header >
     }
 }
+
+Searchbar.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+};
